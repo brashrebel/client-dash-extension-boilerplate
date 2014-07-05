@@ -16,10 +16,10 @@ class MyCDExtension {
 	private $plugin = 'My CD Extension';
 	// Setup your prefix
 	private $pre = 'cdeb';
-	// Set this to be your tab name
-	private $tabname = 'My Tab';
-	// Set the tab slug
-	private $tab = 'my-tab';
+	// Set this to be name of your content block
+	private $block_name = 'Custom Content';
+	// Set the tab slug and name
+	private $tab = 'boilerplate';
 	// Set this to the page you want your tab to appear on (account, help and reports exist in Client Dash)
 	private $page = 'account';
 
@@ -43,11 +43,14 @@ class MyCDExtension {
 	*/
 	public function __construct() {
 		add_action( 'admin_notices', array( $this, 'notices' ) );
-		add_filter( 'cd_tabs', array( $this, 'add_tab' ) );
-		add_action( 'cd_'. $this->page .'_'. $this->tab .'_tab', array( $this, 'tab_contents' ) );
+		add_action( 'plugins_loaded', array( $this, 'content_block' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'cd_settings_general_tab', array( $this, 'settings_display' ), 11 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_styles') );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_styles' ) );
+	}
+
+	public function content_block() {
+		cd_content_block( $this->block_name, $this->page, $this->tab, array( $this, 'tab_contents' ) );
 	}
 
 	public function register_styles() {
@@ -122,12 +125,6 @@ class MyCDExtension {
 		</tbody>
 	</table>
 	<?php }
-
-	// Add the new tab (no need to change)
-	public function add_tab( $tabs ) {
-	$tabs[$this->page][$this->tabname] = $this->tab;
-	return $tabs;
-	}
 
 	// Insert the tab contents
 	public function tab_contents() {
