@@ -28,6 +28,9 @@ Using this plugin is very simple. All you have to do is:
 
 ## Changelog
 
+### 0.1.1
+* Compatibility with 1.3.2 version of Client Dash
+
 ### 0.1
 * Create a tab on the Account page
 * Register and display three sample settings
