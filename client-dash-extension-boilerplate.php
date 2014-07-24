@@ -50,7 +50,7 @@ class MyCDExtension {
 	}
 
 	public function content_block() {
-		cd_content_block( $this->block_name, $this->page, $this->tab, array( $this, 'tab_contents' ) );
+		cd_content_block( $this->block_name, $this->page, $this->tab, array( $this, 'block_contents' ) );
 	}
 
 	public function register_styles() {
@@ -127,9 +127,9 @@ class MyCDExtension {
 	<?php }
 
 	// Insert the tab contents
-	public function tab_contents() {
+	public function block_contents() {
 		// CHANGE THIS
-		echo 'This is where your tab content goes.';
+		echo 'This is where your new content block\'s content goes.';
 	}
 }
 // Instantiate the class
