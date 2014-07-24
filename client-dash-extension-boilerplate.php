@@ -2,7 +2,7 @@
 /*
 Plugin Name: Client Dash Extension Boilerplate
 Description: Starting point for making an addon for Client Dash
-Version: 0.1.1
+Version: 0.1.2
 Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
@@ -58,7 +58,7 @@ class MyCDExtension {
 		$page = get_current_screen();
 		$tab = $_GET['tab'];
 
-		if ( $page->id != $this->page && $tab != $this->tab )
+		if ( $page->id != 'dashboard_page_cd_'.$this->page && $tab != $this->tab )
 			return;
 
 		wp_enqueue_style( $this->pre );
@@ -68,7 +68,7 @@ class MyCDExtension {
 	public function notices() {
 		if ( !is_plugin_active( 'client-dash/client-dash.php' ) ) { ?>
 		<div class="error">
-			<p><?php echo $this->plugin; ?> requires <a href="http://w.org/plugins/client-dash">Client Dash</a>.
+			<p><?php echo $this->plugin; ?> requires <a href="http://w.org/plugins/client-dash">Client Dash</a> version 1.4 or greater.
 			Please install and activate <b>Client Dash</b> to continue using.</p>
 		</div>
 		<?php

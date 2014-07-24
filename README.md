@@ -28,6 +28,10 @@ Using this plugin is very simple. All you have to do is:
 
 ## Changelog
 
+### 0.1.2
+* Changed some text to make a few comments more clear
+* Made a fix to the conditional stylesheet enqueueing page check
+
 ### 0.1.1
 * Compatibility with 1.3.2 version of Client Dash
 
