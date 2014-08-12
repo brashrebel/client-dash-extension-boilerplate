@@ -27,6 +27,12 @@ function cd_boilerplate() {
 		return;
 	}
 
+	/**
+	 * Class MyCDExtension
+	 *
+	 * The main class for the extension. Be sure to rename this class something that
+	 * is unique to your extension. Duplicate classes will break PHP.
+	 */
 	class MyCDExtension extends ClientDash {
 
 		/*
