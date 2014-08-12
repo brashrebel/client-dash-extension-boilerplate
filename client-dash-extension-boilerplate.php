@@ -15,6 +15,11 @@ Author URI: http://realbigmarketing.com/staff/kyle
  *
  * NOTE: This function needs to be changed to whatever your extension
  * is. Also change it at the bottom under "add_action( 'cd_boilerplate'..."
+ *
+ * ALSO NOTE: You also need to change the function name "cdbp_notice" to something
+ * else. Both way at the bottom, and also right here, under "add_action( 'admin_notices'..."
+ *
+ * Please and thank you.
  */
 function cd_boilerplate() {
 	if ( ! class_exists( 'ClientDash' ) ) {
@@ -37,7 +42,13 @@ function cd_boilerplate() {
 		private $section_name = 'Boilerplate Content';
 
 		// Set the tab name
+		// NOTE: This tab name can be a settings tab that already
+		// exists. It will then just add your settings to that tab
+		// (also applies to settings_tab)
 		private $tab = 'Boilerplate';
+
+		// Settings tab name (keep even if no settings)
+		public $settings_tab = 'Boilerplate';
 
 		// Set this to the page you want your tab to appear on (Account, Reports, Help, and Webmaster exist in Client Dash)
 		private $page = 'Account';
@@ -86,14 +97,18 @@ function cd_boilerplate() {
 		 * Add our styles.
 		 */
 		public function add_styles() {
-			$page = get_current_screen();
-			$tab  = isset( $_GET['tab'] ) ? $_GET['tab'] : null;
+			$current_page = isset( $_GET['page'] ) ? $_GET['page'] : null;
+			$current_tab  = isset( $_GET['tab'] ) ? $_GET['tab'] : null;
 
-			if ( $page->id != 'dashboard_page_cd_' . $this->page && $tab != $this->tab ) {
-				return;
+			$page_ID = $this->translate_name_to_id( $this->page );
+			$tab_ID = $this->translate_name_to_id( $this->tab );
+			$settings_tab_ID = $this->translate_name_to_id( $this->settings_tab );
+
+			// Only add style if on extension tab or on extension settings tab
+			if ( ( $current_page == $page_ID && $current_tab == $tab_ID )
+			     || ( $current_page == 'cd_settings' && $current_tab == $settings_tab_ID ) ) {
+				wp_enqueue_style( $this->pre );
 			}
-
-			wp_enqueue_style( $this->pre );
 		}
 
 		/**
@@ -120,10 +135,6 @@ function cd_boilerplate() {
 
 		// Set up our settings section name
 		private $section_name = 'Boilerplate Settings';
-		// And tab name
-		// NOTE: This tab name can be a settings tab that already
-		// exists. It will then just add your settings to that tab
-		private $tab = 'Boilerplate';
 
 		/*
 		* Now let's setup our options
@@ -153,7 +164,7 @@ function cd_boilerplate() {
 				array(
 					'name'     => $this->section_name,
 					'page'     => 'Settings',
-					'tab'      => $this->tab,
+					'tab'      => $this->settings_tab,
 					'callback' => array( $this, 'settings_output' )
 				)
 			);
@@ -165,17 +176,17 @@ function cd_boilerplate() {
 		public function register_settings() {
 
 			register_setting(
-				'cd_options_' . $this->translate_name_to_id( $this->tab ),
+				'cd_options_' . $this->translate_name_to_id( $this->settings_tab ),
 				$this->pre . $this->cb_option
 			);
 
 			register_setting(
-				'cd_options_' . $this->translate_name_to_id( $this->tab ),
+				'cd_options_' . $this->translate_name_to_id( $this->settings_tab ),
 				$this->pre . $this->text_option,
 				'esc_html' );
 
 			register_setting(
-				'cd_options_' . $this->translate_name_to_id( $this->tab ),
+				'cd_options_' . $this->translate_name_to_id( $this->settings_tab ),
 				$this->pre . $this->url_option,
 				'esc_url_raw' );
 		}
