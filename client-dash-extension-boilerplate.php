@@ -7,7 +7,7 @@ Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
 
-// Notices for if CD is not active (no need to change)
+// Notices for if CD is not active (MUST change function name)
 function cdbp_notices() {
 	if ( !is_plugin_active( 'client-dash/client-dash.php' ) ) { ?>
 	<div class="error">
@@ -58,8 +58,6 @@ function cd_boilerplate() {
 		* and other setup components.
 		*/
 		public function __construct() {
-			add_action( 'admin_notices', array( $this, 'notices' ) );
-			add_action( 'plugins_loaded', array( $this, 'content_block' ) );
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
 			add_action( 'cd_settings_general_tab', array( $this, 'settings_display' ), 11 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'register_styles' ) );
@@ -143,5 +141,8 @@ function cd_boilerplate() {
 	}
 // Instantiate the class
 $mycdextension = new MyCDExtension();
+} else {
+	// If CD is nowhere to be found, output this notice (Change second param to match function at the top of this file)
+	add_action( 'admin_notices', 'cdbp_notices' );
 }
 }
