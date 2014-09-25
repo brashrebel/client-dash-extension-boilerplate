@@ -7,6 +7,11 @@ Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
 
+// Change me! Change me to the function just below
+if ( function_exists( 'cd_boilerplate' ) ) {
+	return;
+}
+
 /**
  * The function to launch our plugin.
  *
@@ -14,7 +19,7 @@ Author URI: http://realbigmarketing.com/staff/kyle
  * extension.
  *
  * NOTE: This function needs to be changed to whatever your extension is. Also change it at the bottom under
- * "add_action( 'cd_boilerplate'...".
+ * "add_action( 'cd_boilerplate'...". ALSO change just above "function_exists()".
  *
  * ALSO NOTE: You also need to change the function name "_cd_boilerplate_notice" to something else. Both way at the
  * bottom, and also right here, under "add_action( 'admin_notices'..."
@@ -62,7 +67,7 @@ function cd_boilerplate() {
 		 *
 		 * Feel free to modify this example with your own.
 		 */
-		private $tab = 'About You';
+		private $tab = 'Boilerplate';
 
 		/**
 		 * This is the settings tab name.
@@ -207,7 +212,7 @@ function _cd_boilerplate_notice() {
 	?>
 	<div class="error">
 		<p>You have activated a plugin that requires <a href="http://w.org/plugins/client-dash">Client Dash</a>
-			version 1.5 or greater.
+			version 1.6 or greater.
 			Please install and activate <strong>Client Dash</strong> to continue using.</p>
 	</div>
 <?php

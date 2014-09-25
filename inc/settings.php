@@ -150,6 +150,8 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 		// Opens the standard WP form table.
 		echo self::open_form_table();
 
+		// FIXME checkbox not saving
+
 		/*
 		 * This loop cycles through all of the settings that have been added to $this->settings and outputs them
 		 * accordingly.
