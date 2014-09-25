@@ -7,11 +7,6 @@ Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
 
-// Change me! Change me to the function below
-if ( function_exists( 'cd_boilerplate' ) ) {
-	return;
-}
-
 /**
  * The function to launch our plugin.
  *
@@ -19,7 +14,7 @@ if ( function_exists( 'cd_boilerplate' ) ) {
  * extension.
  *
  * NOTE: This function needs to be changed to whatever your extension is. Also change it at the bottom under
- * "add_action( 'cd_boilerplate'...". ALSO change it right above here in "function_exists()".
+ * "add_action( 'cd_boilerplate'...".
  *
  * ALSO NOTE: You also need to change the function name "_cd_boilerplate_notice" to something else. Both way at the
  * bottom, and also right here, under "add_action( 'admin_notices'..."
