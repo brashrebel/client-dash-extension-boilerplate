@@ -73,6 +73,7 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 				'description'       => $widget['description'],
 				'callback'          => $widget['callback'],
 				'settings_callback' => $widget['settings_callback'],
+				'cd_extension'      => '1', // IMPORTANT: Do NOT remove this.
 			);
 
 			// Calls on a function from the Client Dash widgets class object
@@ -89,15 +90,10 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 	 *
 	 * Feel free to modify this example with your own.
 	 */
-	public static function boilerplate_widget_callback() {
+	public static function boilerplate_widget_callback( $null, $meta_box ) {
 
-		/*
-		 * The ID of the widget this callback belongs to.
-		 *
-		 * IMPORTANT: Use this ID variable as the first parameter in all of your "get_field()" functions and then
-		 * whatever field you're referencing as the second parameter.
-		 */
-		$ID = 'boilerplate_widget';
+		// IMPORTANT: This line is necessary to retrieve the values
+		$ID = $meta_box['id'];
 		?>
 		<h4><strong>Boilerplate Widget Values</strong></h4>
 
@@ -134,14 +130,7 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 	 *
 	 * Feel free to modify, add to, or remove this example with your own.
 	 */
-	public static function boilerplate_widget_settings_callback() {
-
-		/*
-		 * The ID of the widget this callback belongs to.
-		 *
-		 * IMPORTANT: Use this ID variable as the first parameter in all of the helper functions.
-		 */
-		$ID = 'boilerplate_widget';
+	public static function boilerplate_widget_settings_callback( $ID ) {
 
 		// NOTE: To find out how to use these fields, please visit the Client Dash documentation page.
 
