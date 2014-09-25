@@ -28,6 +28,11 @@ Using this plugin is very simple. All you have to do is:
 
 ## Changelog
 
+### 0.2.0
+* Added extension capability for menus, settings, and widgets.
+* Implemented the new CD API.
+* Cleaned up documentation.
+
 ### 0.1.2
 * Changed some text to make a few comments more clear
 * Made a fix to the conditional stylesheet enqueueing page check
@@ -35,6 +40,6 @@ Using this plugin is very simple. All you have to do is:
 ### 0.1.1
 * Compatibility with 1.3.2 version of Client Dash
 
-### 0.1
+### 0.1.0
 * Create a tab on the Account page
 * Register and display three sample settings
