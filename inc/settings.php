@@ -139,7 +139,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 	 */
 	public function settings_output() {
 		?>
-		<h3>Boilerplate Settings</h3>
+		<h3><?php echo $this->section_name; ?> settings</h3>
 
 		<?php
 		// Opens the standard WP form table.
