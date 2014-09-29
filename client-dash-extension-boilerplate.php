@@ -131,9 +131,9 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 				// Add our new content section
 				$this->add_content_section(
 					array(
-						'name'     => $this->$section_name,
-						'tab'      => $this->$tab,
-						'page'     => $this->$page,
+						'name'     => self::$section_name,
+						'tab'      => self::$tab,
+						'page'     => self::$page,
 						'callback' => array( $this, 'section_output' )
 					)
 				);
@@ -153,10 +153,10 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 			public function register_styles() {
 
 				wp_register_style(
-					"{$this->$ID}-style",
-					$this->$_url . 'style.css',
+					self::$ID . '-style',
+					$this->_url . 'style.css',
 					null,
-					$this->$extension_version
+					self::$extension_version
 				);
 			}
 
@@ -170,13 +170,13 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 			 */
 			public function add_styles() {
 
-				$page_ID         = self::translate_name_to_id( $this->$page );
-				$tab_ID          = self::translate_name_to_id( $this->$tab );
-				$settings_tab_ID = self::translate_name_to_id( $this->$settings_tab );
+				$page_ID         = self::translate_name_to_id( self::$page );
+				$tab_ID          = self::translate_name_to_id( self::$tab );
+				$settings_tab_ID = self::translate_name_to_id( self::$settings_tab );
 
 				// Only add style if on extension tab or on extension settings tab
 				if ( self::is_cd_page( $page_ID, $tab_ID ) || self::is_cd_page( 'cd_settings', $settings_tab_ID ) ) {
-					wp_enqueue_style( "{$this->$ID}-style" );
+					wp_enqueue_style( self::$ID . '-style' );
 				}
 			}
 

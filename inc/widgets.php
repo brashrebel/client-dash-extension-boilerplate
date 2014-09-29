@@ -65,7 +65,7 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 		global $ClientDash_Core_Page_Settings_Tab_Widgets;
 
 		// Cycle through all of the widgets and add them
-		foreach ( $this->$widgets as $widget_ID => $widget ) {
+		foreach ( self::$widgets as $widget_ID => $widget ) {
 
 			$args = array(
 				'id'                => $widget_ID,
