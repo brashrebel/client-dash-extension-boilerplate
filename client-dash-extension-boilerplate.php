@@ -103,7 +103,16 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 			 *
 			 * Don't worry about messing with this property.
 			 */
-			public static $_path;
+			public $_path;
+
+			/**
+			 * This is the url to the plugin.
+			 *
+			 * Private.
+			 *
+			 * Don't worry about messing with this property.
+			 */
+			public $_url;
 
 			/**
 			 * This constructor function sets up what happens when the plugin is activated. It is where you'll place all your
@@ -122,15 +131,18 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 				// Add our new content section
 				$this->add_content_section(
 					array(
-						'name'     => $this::$section_name,
-						'tab'      => $this::$tab,
-						'page'     => $this::$page,
+						'name'     => $this->$section_name,
+						'tab'      => $this->$tab,
+						'page'     => $this->$page,
 						'callback' => array( $this, 'section_output' )
 					)
 				);
 
 				// Set the plugin path
-				$this::$_path = plugin_dir_path( __FILE__ );
+				$this->_path = plugin_dir_path( __FILE__ );
+
+				// Set the plugin url
+				$this->_url = plugins_url( '', __FILE__ );
 			}
 
 			/**
@@ -141,10 +153,10 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 			public function register_styles() {
 
 				wp_register_style(
-					"{$this::$ID}-style",
-					$this::$_path . 'style.css',
+					"{$this->$ID}-style",
+					$this->$_url . 'style.css',
 					null,
-					$this::$extension_version
+					$this->$extension_version
 				);
 			}
 
@@ -152,19 +164,19 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 			 * Add our styles.
 			 *
 			 * If you want the styles to show up on the entire back-end, simply remove all but:
-			 * wp_enqueue_style( "$this::$ID-style" );
+			 * wp_enqueue_style( "$this->$ID-style" );
 			 *
 			 * Feel free to modify or add to this example.
 			 */
 			public function add_styles() {
 
-				$page_ID         = self::translate_name_to_id( $this::$page );
-				$tab_ID          = self::translate_name_to_id( $this::$tab );
-				$settings_tab_ID = self::translate_name_to_id( $this::$settings_tab );
+				$page_ID         = self::translate_name_to_id( $this->$page );
+				$tab_ID          = self::translate_name_to_id( $this->$tab );
+				$settings_tab_ID = self::translate_name_to_id( $this->$settings_tab );
 
 				// Only add style if on extension tab or on extension settings tab
 				if ( self::is_cd_page( $page_ID, $tab_ID ) || self::is_cd_page( 'cd_settings', $settings_tab_ID ) ) {
-					wp_enqueue_style( "{$this::$ID}-style" );
+					wp_enqueue_style( "{$this->$ID}-style" );
 				}
 			}
 
@@ -187,15 +199,15 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 
 		// Include the file for your plugin settings. Simply remove or comment this line to disable the settings
 		// Remove if you don't want settings
-		include_once( "{$MyCDExtension::$_path}inc/settings.php" );
+		include_once( "{$MyCDExtension->_path}inc/settings.php" );
 
 		// Include the file for your plugin widget. Simply remove or comment this line to disable the widget
 		// Remove if you don't want widgets
-		include_once( "{$MyCDExtension::$_path}inc/widgets.php" );
+		include_once( "{$MyCDExtension->_path}inc/widgets.php" );
 
 		// Include the file for your plugin menus. Simply remove or comment this line to disable the widget
 		// Remove if you don't want menus
-		include_once( "{$MyCDExtension::$_path}inc/menus.php" );
+		include_once( "{$MyCDExtension->_path}inc/menus.php" );
 	}
 
 	// Change me! Change me to the name of the function at the top.

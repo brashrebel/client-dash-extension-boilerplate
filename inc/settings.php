@@ -83,10 +83,10 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 
 		// Transfer ID over to this class
 		// Change me! Change "MyCDExtension" to whatever you've renamed your class to.
-		$this::$ID = MyCDExtension::$ID;
+		$this->$ID = MyCDExtension::$ID;
 
 		// Set the ID
-		$this::$_settings_ID = "{$this::$ID}_settings";
+		$this->$_settings_ID = "{$this->$ID}_settings";
 
 		// Register the extension settings
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
@@ -94,7 +94,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 		// Add our content section
 		$this->add_content_section(
 			array(
-				'name'     => $this::$section_name,
+				'name'     => $this->$section_name,
 				'tab'      => MyCDExtension::$settings_tab, // Change me too!
 				'page'     => 'Settings',
 				'callback' => array( $this, 'settings_output' )
@@ -115,12 +115,12 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 	public function register_settings() {
 
 		// Register all settings
-		foreach ( $this::$settings as $setting ) {
-			self::register_field( "cd_options_{$this::$ID}", $this::$_settings_ID, $setting['ID'] );
+		foreach ( $this->$settings as $setting ) {
+			self::register_field( "cd_options_{$this->$ID}", $this->$_settings_ID, $setting['ID'] );
 		}
 
 		// Custom field example
-		self::register_field( "cd_options_{$this::$ID}", $this::$_settings_ID, 'custom_text_field' );
+		self::register_field( "cd_options_{$this->$ID}", $this->$_settings_ID, 'custom_text_field' );
 	}
 
 	/**
@@ -146,13 +146,13 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 		echo self::open_form_table();
 
 		/*
-		 * This loop cycles through all of the settings that have been added to $this::$settings and outputs them
+		 * This loop cycles through all of the settings that have been added to $this->$settings and outputs them
 		 * accordingly.
 		 *
 		 * If you would like, you may delete this entire loop and input your own settings using the Client Dash Settings
 		 * API. This API is in the Client Dash documentation page.
 		 */
-		foreach ( $this::$settings as $setting_type => $setting ) {
+		foreach ( $this->$settings as $setting_type => $setting ) {
 
 			if ( ! isset( $setting['ID'] ) ) {
 				self::error_nag( "ERROR: $setting[name] cannot be displayed because it's missing the ID" );
@@ -161,7 +161,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 
 			// Setup args
 			$args = array(
-				$this::$_settings_ID,
+				$this->$_settings_ID,
 				$setting['ID'],
 				isset( $setting['name'] ) ? $setting['name'] : null,
 				isset( $setting['atts'] ) ? $setting['atts'] : [ ],
@@ -181,7 +181,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 		}
 
 		// Example setting using the API
-		echo self::text_field( $this::$_settings_ID, 'custom_text_field', 'Custom Text Field' );
+		echo self::text_field( $this->$_settings_ID, 'custom_text_field', 'Custom Text Field' );
 
 		// Closes the form table
 		echo self::close_form_table();
