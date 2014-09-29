@@ -18,12 +18,12 @@ class MyCDExtension_Menus extends ClientDash_Menus_API {
 	 * of the screen under Settings -> Menus.
 	 *
 	 * Currently, this boilerplate only adds one group drop-down area and uses this property to
-	 * populate it. Feel free to modify, add to, or remove this example with your own.
+	 * populate it.
 	 *
 	 * Pro Tip: If you only put one tab in the array, the tab selection (displayed over the available
 	 * items) will not show.
 	 *
-	 * Feel free to modify this example with your own.
+	 * Feel free to modify this example.
 	 */
 	private static $group_items = array(
 		'Tab 1' => array(
@@ -31,6 +31,8 @@ class MyCDExtension_Menus extends ClientDash_Menus_API {
 				'url'  => '/options-general.php?page=cd_settings&tab=boilerplate',
 				'icon' => 'dashicons-smiley',
 			),
+			// You can add a separator like this!
+			'Test' => 'separator',
 		),
 		'Tab 2' => array(
 			'Item 1' => array(
@@ -57,7 +59,7 @@ class MyCDExtension_Menus extends ClientDash_Menus_API {
 	 * This group will contain the menu items that are output inside of the "group_content" method
 	 * inside of this class.
 	 *
-	 * Feel free to modify, add to, or remove this example with your own.
+	 * Feel free to modify or add to this example, or even remove it.
 	 */
 	public function add_new_menu_groups() {
 
@@ -67,15 +69,15 @@ class MyCDExtension_Menus extends ClientDash_Menus_API {
 	/**
 	 * This is the callback function for the example group we've created.
 	 *
-	 * Inside of this you can add any HTML that you want, but it is recommended that you stil with just
+	 * Inside of this you can add any HTML that you want, but it is recommended that you stick with just
 	 * using the supplied "group_output()" function. This function takes an array of tabs and items (currently
-	 * using the property from above) and outputs the menu items accordingly.
+	 * using the $group_items property from above) and outputs the menu items accordingly.
 	 *
-	 * Feel free to modify, add to, or remove this example with your own.
+	 * Feel free to modify or add to this example, or even remove it.
 	 */
 	public static function group_content() {
 
-		self::group_output( 'boilerplate_menu', self::$group_items );
+		self::group_output( 'Boilerplate Group', self::$group_items );
 	}
 }
 

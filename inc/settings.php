@@ -14,36 +14,27 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 	 * This will be the display name of the content section that this plugin's settings reside in. If there is only one
 	 * content section within the tab, the name will not show.
 	 *
-	 * Feel free to modify this example with your own.
+	 * Feel free to modify this example.
 	 */
-	private $section_name = 'Boilerplate Settings';
+	private static $section_name = 'Boilerplate Settings';
 
 	/**
-	 * This is the settings tab name.
+	 * Your extension's main ID, as set in the main plugin class.
 	 *
-	 * All of your plugin settings will reside here. This may also be the name of an existing tab.
+	 * This will be set below in the __construct function().
 	 *
-	 * IMPORTANT: This must match exactly the $settings_tab property in the main plugin file.
-	 *
-	 * Feel free to modify this example with your own.
+	 * Don't worry about messing with this property.
 	 */
-	private $settings_tab = 'Boilerplate';
-
-	/**
-	 * This is the ID for the plugin. It's very important that this matches the ID in the base file.
-	 *
-	 * Feel free to modify this example with your own.
-	 */
-	private $ID = 'boilerplate';
+	private static $ID;
 
 	/**
 	 * Use this property to create settings for the page.
 	 *
 	 * Follow the example to either modify, remove, or add more settings to the page.
 	 *
-	 * Feel free to modify, add to, or remove this example with your own.
+	 * Feel free to modify or add to this example, or even remove it.
 	 */
-	private $settings = array(
+	private static $settings = array(
 		'text' => array(
 			'name' => 'Text Field',
 			'ID' => 'text_field',
@@ -78,7 +69,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 	 *
 	 * Don't worry about messing with this property.
 	 */
-	private $_settings_ID;
+	private static $_settings_ID;
 
 	/**
 	 * The main construct function.
@@ -90,8 +81,12 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 	 */
 	function __construct() {
 
+		// Transfer ID over to this class
+		// Change me! Change "MyCDExtension" to whatever you've renamed your class to.
+		$this::$ID = MyCDExtension::$ID;
+
 		// Set the ID
-		$this->_settings_ID = "{$this->ID}_settings";
+		$this::$_settings_ID = "{$this::$ID}_settings";
 
 		// Register the extension settings
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
@@ -99,8 +94,8 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 		// Add our content section
 		$this->add_content_section(
 			array(
-				'name'     => $this->section_name,
-				'tab'      => $this->settings_tab,
+				'name'     => $this::$section_name,
+				'tab'      => MyCDExtension::$settings_tab, // Change me too!
 				'page'     => 'Settings',
 				'callback' => array( $this, 'settings_output' )
 			)
@@ -115,17 +110,17 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 	 *
 	 * IMPORTANT: Any setting that appears on this page MUST be registered.
 	 *
-	 * Feel free to modify, add to, or remove this example with your own.
+	 * Feel free to modify or add to this example, or even remove it.
 	 */
 	public function register_settings() {
 
 		// Register all settings
-		foreach ( $this->settings as $setting ) {
-			self::register_field( "cd_options_$this->ID", $this->_settings_ID, $setting['ID'] );
+		foreach ( $this::$settings as $setting ) {
+			self::register_field( "cd_options_{$this::$ID}", $this::$_settings_ID, $setting['ID'] );
 		}
 
 		// Custom field example
-		self::register_field( "cd_options_$this->ID", $this->_settings_ID, 'custom_text_field' );
+		self::register_field( "cd_options_{$this::$ID}", $this::$_settings_ID, 'custom_text_field' );
 	}
 
 	/**
@@ -140,7 +135,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 	 *
 	 * text_field(), checkbox_field(), textarea_field(), select_field().
 	 *
-	 * Feel free to modify, add to, or remove this example with your own.
+	 * Feel free to modify or add to this example, or even remove it.
 	 */
 	public function settings_output() {
 		?>
@@ -150,16 +145,14 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 		// Opens the standard WP form table.
 		echo self::open_form_table();
 
-		// FIXME checkbox not saving
-
 		/*
-		 * This loop cycles through all of the settings that have been added to $this->settings and outputs them
+		 * This loop cycles through all of the settings that have been added to $this::$settings and outputs them
 		 * accordingly.
 		 *
 		 * If you would like, you may delete this entire loop and input your own settings using the Client Dash Settings
 		 * API. This API is in the Client Dash documentation page.
 		 */
-		foreach ( $this->settings as $setting_type => $setting ) {
+		foreach ( $this::$settings as $setting_type => $setting ) {
 
 			if ( ! isset( $setting['ID'] ) ) {
 				self::error_nag( "ERROR: $setting[name] cannot be displayed because it's missing the ID" );
@@ -168,7 +161,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 
 			// Setup args
 			$args = array(
-				$this->_settings_ID,
+				$this::$_settings_ID,
 				$setting['ID'],
 				isset( $setting['name'] ) ? $setting['name'] : null,
 				isset( $setting['atts'] ) ? $setting['atts'] : [ ],
@@ -188,7 +181,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 		}
 
 		// Example setting using the API
-		echo self::text_field( $this->_settings_ID, 'custom_text_field', 'Custom Text Field' );
+		echo self::text_field( $this::$_settings_ID, 'custom_text_field', 'Custom Text Field' );
 
 		// Closes the form table
 		echo self::close_form_table();

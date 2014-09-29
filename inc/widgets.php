@@ -24,9 +24,9 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 	 * function outside of this class. However, if you do so, you will lose access to the provided helper functions
 	 * used below.
 	 *
-	 * Feel free to modify this example with your own.
+	 * Feel free to modify this example.
 	 */
-	public $widgets = array(
+	public static $widgets = array(
 		'boilerplate_widget' => array(
 			'title'             => 'Boilerplate Widget',
 			'description'       => 'My awesome boilerplate comes with this great widget.',
@@ -65,7 +65,7 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 		global $ClientDash_Core_Page_Settings_Tab_Widgets;
 
 		// Cycle through all of the widgets and add them
-		foreach ( $this->widgets as $widget_ID => $widget ) {
+		foreach ( $this::$widgets as $widget_ID => $widget ) {
 
 			$args = array(
 				'id'                => $widget_ID,
@@ -88,7 +88,7 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 	 * Pro Tip: Use the function "self::get_field()" (as you can see below) to get all of the custom form data you may
 	 * have created in the widget settings.
 	 *
-	 * Feel free to modify this example with your own.
+	 * Feel free to modify this example.
 	 */
 	public static function boilerplate_widget_callback( $null, $meta_box ) {
 
@@ -128,7 +128,7 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 	 * form input, then simply use the "self::get_field_name()" function for supplying the input name. This ensures
 	 * that data saving and retrieval can still be handled by Client Dash.
 	 *
-	 * Feel free to modify, add to, or remove this example with your own.
+	 * Feel free to modify or add to this example, or even remove it.
 	 */
 	public static function boilerplate_widget_settings_callback( $ID ) {
 
@@ -180,10 +180,10 @@ class MyCDExtension_Widgets extends ClientDash_Widgets_API {
 		$field_ID = self::get_field_ID( $ID, 'custom_field' );
 		?>
 		<p>
-			<label for="<?php echo $field_ID ?>">
+			<label for="<?php echo $field_ID; ?>">
 				Custom Field
 				<br/>
-				<input type="text" id="<?php echo $field_ID ?>"
+				<input type="text" id="<?php echo $field_ID; ?>"
 				       name="<?php echo self::get_field_name( $ID, 'custom_field' ); ?>"
 				       value="<?php echo self::get_field( $ID, 'custom_field' ); ?>"/>
 			</label>
