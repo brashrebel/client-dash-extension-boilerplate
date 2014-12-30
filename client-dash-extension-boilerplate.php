@@ -205,7 +205,7 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 		// Remove if you don't want widgets
 		include_once( "{$MyCDExtension->_path}inc/widgets.php" );
 
-		// Include the file for your plugin menus. Simply remove or comment this line to disable the widget
+		// Include the file for your plugin menus. Simply remove or comment this line to disable the menu
 		// Remove if you don't want menus
 		include_once( "{$MyCDExtension->_path}inc/menus.php" );
 	}
