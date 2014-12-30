@@ -3,8 +3,7 @@
 /**
  * Class MyCDExtension_Menus
  *
- * This is an optional class for adding widgets to the Client Dash Settings -> Widgets
- * tab to be made available for use on the dashboard.
+ * This is an optional class for adding custom menus.
  *
  * If you do NOT want to use custom menus, free to delete this file and the
  * "include_once( "{$MyCDExtension::$_path}inc/menus.php" );" line in the main boilerplate file.
