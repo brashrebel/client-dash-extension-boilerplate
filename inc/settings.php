@@ -3,7 +3,7 @@
 /**
  * Class MyCDExtension_Settings
  *
- * If you do NOT want to use custom widgets, free to delete this file and the
+ * If you do NOT want to use settings, feel free to delete this file and the
  * "include_once( "{$MyCDExtension::$_path}inc/settings.php" );" line in the main boilerplate file.
  */
 class MyCDExtension_Settings extends ClientDash_Settings_API {
