@@ -7,8 +7,6 @@ Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
 
-// FIXME Style not loading
-
 // Change me! Change me to the function just below
 if ( ! function_exists( 'cd_boilerplate' ) ) {
 
@@ -142,7 +140,7 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 				$this->_path = plugin_dir_path( __FILE__ );
 
 				// Set the plugin url
-				$this->_url = plugins_url( '', __FILE__ );
+				$this->_url = plugins_url( '', __FILE__ )."/";
 			}
 
 			/**
