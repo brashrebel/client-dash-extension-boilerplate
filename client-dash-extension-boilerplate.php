@@ -140,7 +140,7 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 				$this->_path = plugin_dir_path( __FILE__ );
 
 				// Set the plugin url
-				$this->_url = plugins_url( '', __FILE__ )."/";
+				$this->_url = plugin_dir_url( __FILE__ );
 			}
 
 			/**
