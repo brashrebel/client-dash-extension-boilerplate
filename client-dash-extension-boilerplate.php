@@ -2,7 +2,7 @@
 /*
 Plugin Name: Client Dash Extension Boilerplate
 Description: Starting point for making an add-on for Client Dash.
-Version: 0.2.0
+Version: 0.2.1
 Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */

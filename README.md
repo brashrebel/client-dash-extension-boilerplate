@@ -28,6 +28,9 @@ Using this plugin is very simple. All you have to do is:
 
 ## Changelog
 
+### 0.2.1
+* Fixed pre PHP 5.4 error from shorthand array syntax.
+
 ### 0.2.0
 * Added extension capability for menus, settings, and widgets.
 * Implemented the new CD API.
