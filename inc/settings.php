@@ -164,7 +164,7 @@ class MyCDExtension_Settings extends ClientDash_Settings_API {
 				$this->_settings_ID,
 				$setting['ID'],
 				isset( $setting['name'] ) ? $setting['name'] : null,
-				isset( $setting['atts'] ) ? $setting['atts'] : [ ],
+				isset( $setting['atts'] ) ? $setting['atts'] : array(),
 			);
 
 			// Select box has extra param
