@@ -4,7 +4,7 @@ If you're looking to integrate with Client Dash than this is your lucky day. We 
 
 ## What does this boilerplate do?
 
-Great question. So this plugin is not intended to be give you any functionality that anyone would consider useful out of the box. Rather it is a template for developers to quickly and easily make something amazing that takes full advantage of and integrates well with [Client Dash](http://w.org/plugins/client-dash/).
+Great question. So this plugin is not intended to give you any functionality that anyone would consider useful out of the box. Rather it is a template for developers to quickly and easily make something amazing that takes full advantage of and integrates well with [Client Dash](http://w.org/plugins/client-dash/).
 
 Upon activation, this plugin simply displays a sample tab on the Account page and registers several sample settings on the Settings page. It is up to you to make this awesome.
 
