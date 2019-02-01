@@ -7,8 +7,6 @@ Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
 
-// FIXME Style not loading
-
 // Change me! Change me to the function just below
 if ( ! function_exists( 'cd_boilerplate' ) ) {
 
@@ -142,7 +140,7 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 				$this->_path = plugin_dir_path( __FILE__ );
 
 				// Set the plugin url
-				$this->_url = plugins_url( '', __FILE__ );
+				$this->_url = plugin_dir_url( __FILE__ );
 			}
 
 			/**
@@ -205,7 +203,7 @@ if ( ! function_exists( 'cd_boilerplate' ) ) {
 		// Remove if you don't want widgets
 		include_once( "{$MyCDExtension->_path}inc/widgets.php" );
 
-		// Include the file for your plugin menus. Simply remove or comment this line to disable the widget
+		// Include the file for your plugin menus. Simply remove or comment this line to disable the menu
 		// Remove if you don't want menus
 		include_once( "{$MyCDExtension->_path}inc/menus.php" );
 	}
